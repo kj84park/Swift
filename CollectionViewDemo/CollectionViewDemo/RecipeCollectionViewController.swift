@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Social
 
 private let reuseIdentifier = "Cell"
 
@@ -18,6 +19,51 @@ class RecipeCollectionViewController: UICollectionViewController {
                         "mushroom_risotto", "noodle_with_bbq_pork", "starbucks_coffee",
                         "thai_shrimp_cake", "vegetable_curry", "white_chocolate_donut"]
     
+    var selectedRecipes:[String] = []
+    
+    @IBAction func shareButtonTaped(_ sender: Any) {
+        
+        if shareEnabled {
+            //posting selected pic on facebook
+            if selectedRecipes.count > 0 {
+                if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) {
+                    let facebookComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+                    facebookComposer?.setInitialText("내 레시피 체크하기!")
+                    for recipePhoto in selectedRecipes {
+                        facebookComposer?.add(UIImage(named: recipePhoto))
+                    }
+                    present(facebookComposer!, animated: true, completion: nil)
+                }
+            }
+            
+            //모든 선택된 아이템들의 선택을 해지한다.
+            if let indexPaths = collectionView?.indexPathsForSelectedItems {
+                for indexPath in indexPaths {
+                    collectionView?.deselectItem(at: indexPath, animated: false)
+                }
+            }
+            
+            //selectedRecipes배열에서 모든 아이템들을 삭제한다.
+            selectedRecipes.removeAll(keepingCapacity: true)
+            //sharing모드를 NO로 변경한다.
+            shareEnabled = false
+            collectionView?.allowsMultipleSelection = false
+            shareButton.title = "Share"
+            shareButton.style = UIBarButtonItemStyle.plain
+        } else {
+            shareEnabled = true
+            collectionView?.allowsMultipleSelection = true;
+            shareButton.title = "upload"
+            shareButton.style = UIBarButtonItemStyle.done
+            
+        }
+        
+    }
+    
+    @IBOutlet var shareButton: UIBarButtonItem!
+    
+    //selection 모드에서 공유를 위한 변수
+    var shareEnabled = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +75,22 @@ class RecipeCollectionViewController: UICollectionViewController {
         //self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        //공유모드에서 트리거되면 공유모드를 다시 리셋해준다.
+        if identifier == "showRecipePhoto" {
+            if shareEnabled {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    
+    @IBAction func unwindReturnSegue(segue:UIStoryboardSegue){
+        print("되돌아옴")
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,6 +114,19 @@ class RecipeCollectionViewController: UICollectionViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        //공유 모드가 활성화되어 있으면 처리하고 그렇지 않으면 빠져나가기
+        guard shareEnabled else {
+            return
+        }
+        
+        //indexPath를 사용해서 선택된 아이템들을 검사하기
+        let selectedRecipe = recipeImages[indexPath.row]
+        //배열에 선택된 아이템들을 추가하기
+        selectedRecipes.append(selectedRecipe)
+    }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -73,10 +148,22 @@ class RecipeCollectionViewController: UICollectionViewController {
         cell.backgroundView = UIImageView(image: UIImage(named: "photo-frame"))
         
         //선택되었을 때의 백그라운드 이미지를 셋팅한다.
-        //        cell.selectedBackgroundView =
-        //            UIImageView(image: UIImage(named: "photo-frame-selected"))
+        cell.selectedBackgroundView = UIImageView(image: UIImage(named: "photo-frame-selected"))
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showRecipePhoto" {
+            
+            if let indexPaths = collectionView?.indexPathsForSelectedItems {
+                let destinationViewController = segue.destination as! UINavigationController
+                let photoViewController = destinationViewController.viewControllers[0] as! PhotoDetailViewCellViewController
+                photoViewController.imageName = recipeImages[indexPaths[0].row]
+                collectionView?.deselectItem(at: indexPaths[0], animated: false)
+            }
+        }
     }
 
     // MARK: UICollectionViewDelegate

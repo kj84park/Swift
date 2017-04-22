@@ -10,8 +10,12 @@ import UIKit
 
 class PhotoDetailViewCellViewController: UIViewController {
 
+    @IBOutlet var photoImage: UIImageView!
+    var imageName:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        photoImage.image = UIImage(named: imageName)
 
         // Do any additional setup after loading the view.
     }
