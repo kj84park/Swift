@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,12 +21,37 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat01.png" highlightedImage="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="sCX-mF-FLR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="배 곯긍!!!!어서 음식을 내오긍!!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJc-0Y-9lI">
+                                <rect key="frame" x="2" y="517" width="371" height="72"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PJc-0Y-9lI" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="497" id="AW3-Ka-8Xf"/>
+                            <constraint firstAttribute="trailing" secondItem="sCX-mF-FLR" secondAttribute="trailing" id="DAZ-90-M9t"/>
+                            <constraint firstItem="sCX-mF-FLR" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="I8C-5T-shk"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="PJc-0Y-9lI" secondAttribute="bottom" constant="78" id="Mgg-ab-Kq0"/>
+                            <constraint firstItem="PJc-0Y-9lI" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-14" id="QrI-Lb-HJj"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="sCX-mF-FLR" secondAttribute="bottom" id="e6I-qs-FNd"/>
+                            <constraint firstItem="sCX-mF-FLR" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="iqE-Le-hTB"/>
+                            <constraint firstItem="PJc-0Y-9lI" firstAttribute="centerX" secondItem="sCX-mF-FLR" secondAttribute="centerX" id="pDj-I4-NVI"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LaunchImage" width="512" height="512"/>
+        <image name="cat01.png" width="428" height="344"/>
+    </resources>
 </document>

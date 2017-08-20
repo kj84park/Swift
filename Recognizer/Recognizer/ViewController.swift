@@ -15,6 +15,18 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    @IBAction func panDetected(_ sender: UIPanGestureRecognizer) {
+        
+        //let scale = sender.
+        //let velocity = sender.ve
+        
+       // let resultString =
+       // "Rotation - radiands : \(radians), velocity : \(velocity)"
+        
+        statusLabel.text = "detected PAN"
+    
+    }
+    @IBOutlet var panDetected: UIPanGestureRecognizer!
 
     @IBOutlet weak var statusLabel: UILabel!
     
