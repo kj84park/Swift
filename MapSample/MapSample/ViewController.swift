@@ -1,6 +1,8 @@
 
 import UIKit
 import MapKit
+import ARCL
+
 
 class ViewController: UIViewController, MKMapViewDelegate {
     var matchingItems:[MKMapItem] = [MKMapItem]()
@@ -8,6 +10,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     static var yyValue: Double! = 20000;
     static var xxValue: Double! = 20000;
+    
+    static var annotationCoorinate: CLLocationCoordinate2D!
     
     var places = [Place]()
     var searchResultsPlaces = [Place]()
@@ -19,6 +23,25 @@ class ViewController: UIViewController, MKMapViewDelegate {
         self.performSearch(placeForQuery:searchText.text!)
     }
     @IBOutlet var searchText: UITextField!
+
+    @IBAction func showARMode(_ sender: Any) {
+        print("## showARMode ")
+        //performSegue(withIdentifier: "ARViewController", sender: ViewController.annotationCoorinate)
+        
+    
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        print("## prepare 1")
+        if let destination = segue.destination as? ARViewController {
+            print("## prepare 2")
+            //if let coordinate = sender as? CLLocationCoordinate2D!{
+                print("## prepare 3")
+                destination.annotationCoorinate = ViewController.annotationCoorinate
+            //}
+        }
+    }
     
     @IBAction func zoomIn(_ sender: AnyObject) {
         
@@ -77,6 +100,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       // sceneLocationView.run()
         // Do any additional setup after loading the view, typically from a nib.
         mapView.showsUserLocation = true
         mapView.showsPointsOfInterest = true
@@ -99,6 +124,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         let sourcePM = MKPlacemark(coordinate: mapView.userLocation.coordinate)
         let destinationPM = MKPlacemark(coordinate: view.annotation!.coordinate)
+        
+        
+        print("## setupRouteInfo")
+        ViewController.annotationCoorinate = view.annotation!.coordinate
         
         let sourceMapItem = MKMapItem(placemark: sourcePM)
         let destinationMapItem = MKMapItem(placemark: destinationPM)

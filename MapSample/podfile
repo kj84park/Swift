@@ -1,0 +1,9 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '11.0'
+target 'MapSample' do
+use_frameworks!
+pod 'ARCL'
+
+use_frameworks!
+pod 'CocoaLumberjack/Swift'
+end
