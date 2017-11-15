@@ -25,14 +25,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet var searchText: UITextField!
 
     @IBAction func showARMode(_ sender: Any) {
-        print("## showARMode ")
-        //performSegue(withIdentifier: "ARViewController", sender: ViewController.annotationCoorinate)
         
-    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let destination = segue.destination as? ARViewController {
                 destination.annotationArray = annotationArray
         }
@@ -95,9 +91,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       // sceneLocationView.run()
-        // Do any additional setup after loading the view, typically from a nib.
+
         mapView.showsUserLocation = true
         mapView.showsPointsOfInterest = true
         mapView.showsTraffic = true
@@ -107,9 +101,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        for place in self.places {
-//            performSearch(placeForQuery: place.title)
-//        }
+
     }
     @IBOutlet var distanceToDestination: UITextField!
     @IBOutlet var phoneNum: UITextField!
@@ -119,9 +111,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         
         let sourcePM = MKPlacemark(coordinate: mapView.userLocation.coordinate)
         let destinationPM = MKPlacemark(coordinate: view.annotation!.coordinate)
-        
-        print("## setupRouteInfo")
-        
+
         let sourceMapItem = MKMapItem(placemark: sourcePM)
         let destinationMapItem = MKMapItem(placemark: destinationPM)
         
