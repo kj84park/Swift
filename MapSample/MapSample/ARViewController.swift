@@ -11,9 +11,9 @@ import ARCL
 import CoreLocation
 
 class ARViewController: UIViewController {
-    
-    var annotationCoorinate: CLLocationCoordinate2D!
+ 
     var sceneLocationView = SceneLocationView()
+    var annotationArray = [LocationNode]()
     
      var infoLabel = UILabel()
 
@@ -21,12 +21,10 @@ class ARViewController: UIViewController {
         super.viewDidLoad()
         sceneLocationView.run()
         
-        print("## viewDidLoad")
-        let location = CLLocation(coordinate: annotationCoorinate, altitude: 30)
-        let image = UIImage(named: "pin")!
-        let annotationNode = LocationAnnotationNode(location: location, image: image)
-        annotationNode.scaleRelativeToDistance = true;
-        sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
+        for annotationNode in annotationArray {
+            sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
+        }
+        
         view.addSubview(sceneLocationView)
         // Do any additional setup after loading the view.
     }
@@ -46,7 +44,6 @@ class ARViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 

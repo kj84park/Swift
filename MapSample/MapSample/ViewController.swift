@@ -10,8 +10,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     static var yyValue: Double! = 20000;
     static var xxValue: Double! = 20000;
-    
-    static var annotationCoorinate: CLLocationCoordinate2D!
+
+    var annotationArray = [LocationNode]()
     
     var places = [Place]()
     var searchResultsPlaces = [Place]()
@@ -33,13 +33,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        print("## prepare 1")
         if let destination = segue.destination as? ARViewController {
-            print("## prepare 2")
-            //if let coordinate = sender as? CLLocationCoordinate2D!{
-                print("## prepare 3")
-                destination.annotationCoorinate = ViewController.annotationCoorinate
-            //}
+                destination.annotationArray = annotationArray
         }
     }
     
@@ -125,9 +120,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let sourcePM = MKPlacemark(coordinate: mapView.userLocation.coordinate)
         let destinationPM = MKPlacemark(coordinate: view.annotation!.coordinate)
         
-        
         print("## setupRouteInfo")
-        ViewController.annotationCoorinate = view.annotation!.coordinate
         
         let sourceMapItem = MKMapItem(placemark: sourcePM)
         let destinationMapItem = MKMapItem(placemark: destinationPM)
@@ -159,7 +152,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
                 componentFormatter.zeroFormattingBehavior = .dropAll
                 
                 if let formattedString = componentFormatter.string(from: route.expectedTravelTime) {
-                    self.expectedTime.text = formattedString
+                    self.expectedTime.text = "car "+formattedString
                 }
                 
                 let routeRect = route.polyline.boundingMapRect
@@ -237,6 +230,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         request.region = mapView.region
         
         let search = MKLocalSearch(request: request)
+        
         search.start(completionHandler: {(response,error) in
             if error != nil{
                 print("Error: \(error!.localizedDescription)")
@@ -261,6 +255,13 @@ class ViewController: UIViewController, MKMapViewDelegate {
                     annotation.coordinate = item.placemark.coordinate
                     annotation.title = item.name
                     
+                    let location = CLLocation(coordinate: item.placemark.coordinate, altitude: 30)
+                    let image = UIImage(named: "pin")!
+                    let annotationNode = LocationAnnotationNode(location: location, image: image)
+  
+                    annotationNode.scaleRelativeToDistance = true;
+                    self.annotationArray.append(annotationNode)
+                  
                     self.mapView.addAnnotation(annotation)
                 }
             }
