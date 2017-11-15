@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		043985351FBB0896004264AB /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043985341FBB0896004264AB /* ARViewController.swift */; };
+		047D1D731FBC897D0008A826 /* cat01.png in Resources */ = {isa = PBXBuildFile; fileRef = 047D1D721FBC897C0008A826 /* cat01.png */; };
 		04C26B1E1F4737FF00BA6527 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C26B1C1F4736DA00BA6527 /* Place.swift */; };
 		04C26B1F1F47395800BA6527 /* categories.json in Resources */ = {isa = PBXBuildFile; fileRef = 04C26B1D1F4736E400BA6527 /* categories.json */; };
-		04E0173C1F10D1AE002DD521 /* cat01.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E0173B1F10D1AE002DD521 /* cat01.png */; };
 		04EA94921EA9D23300DABF7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA94911EA9D23300DABF7E /* AppDelegate.swift */; };
 		04EA94941EA9D23300DABF7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EA94931EA9D23300DABF7E /* ViewController.swift */; };
 		04EA94971EA9D23300DABF7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EA94951EA9D23300DABF7E /* Main.storyboard */; };
@@ -23,9 +23,9 @@
 /* Begin PBXFileReference section */
 		01DAD397F6CBD4F825798869 /* Pods-MapSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapSample/Pods-MapSample.release.xcconfig"; sourceTree = "<group>"; };
 		043985341FBB0896004264AB /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		047D1D721FBC897C0008A826 /* cat01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cat01.png; sourceTree = "<group>"; };
 		04C26B1C1F4736DA00BA6527 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		04C26B1D1F4736E400BA6527 /* categories.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = categories.json; sourceTree = "<group>"; };
-		04E0173B1F10D1AE002DD521 /* cat01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cat01.png; path = ../../../../../../Downloads/cat01.png; sourceTree = "<group>"; };
 		04EA948E1EA9D23300DABF7E /* MapSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04EA94911EA9D23300DABF7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04EA94931EA9D23300DABF7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +70,7 @@
 		04E017381F10CEA7002DD521 /* AppIcon */ = {
 			isa = PBXGroup;
 			children = (
-				04E0173B1F10D1AE002DD521 /* cat01.png */,
+				047D1D721FBC897C0008A826 /* cat01.png */,
 			);
 			path = AppIcon;
 			sourceTree = "<group>";
@@ -194,8 +194,8 @@
 			files = (
 				04C26B1F1F47395800BA6527 /* categories.json in Resources */,
 				04EA949C1EA9D23300DABF7E /* LaunchScreen.storyboard in Resources */,
-				04E0173C1F10D1AE002DD521 /* cat01.png in Resources */,
 				04EA94991EA9D23300DABF7E /* Assets.xcassets in Resources */,
+				047D1D731FBC897D0008A826 /* cat01.png in Resources */,
 				04EA94971EA9D23300DABF7E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
