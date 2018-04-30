@@ -3,6 +3,15 @@ import UIKit
 import MapKit
 import ARCL
 
+extension UIImage {
+    class func imageWithLabel(label: UILabel) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(label.bounds.size, false, 0.0)
+        label.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
+}
 
 class ViewController: UIViewController, MKMapViewDelegate {
     var matchingItems:[MKMapItem] = [MKMapItem]()
@@ -246,10 +255,14 @@ class ViewController: UIViewController, MKMapViewDelegate {
                     annotation.title = item.name
                     
                     let location = CLLocation(coordinate: item.placemark.coordinate, altitude: 30)
-                    let image = UIImage(named: "pin")!
+                    //let image = UIImage(named: "pin")!
+                    let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+                    label.text = item.name
+                    label.textColor = UIColor.white
+                    let image = UIImage.imageWithLabel(label: label)
                     let annotationNode = LocationAnnotationNode(location: location, image: image)
   
-                    annotationNode.scaleRelativeToDistance = true;
+                    //annotationNode.scaleRelativeToDistance = true;
                     self.annotationArray.append(annotationNode)
                   
                     self.mapView.addAnnotation(annotation)

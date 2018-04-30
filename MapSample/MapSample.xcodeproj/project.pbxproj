@@ -140,7 +140,6 @@
 				04EA948B1EA9D23300DABF7E /* Frameworks */,
 				04EA948C1EA9D23300DABF7E /* Resources */,
 				F2839B9D8EFFEF61522E877F /* [CP] Embed Pods Frameworks */,
-				FB1CE0FFA4BFA311B0DDEC03 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -239,21 +238,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapSample/Pods-MapSample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FB1CE0FFA4BFA311B0DDEC03 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapSample/Pods-MapSample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
